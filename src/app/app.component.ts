@@ -1,22 +1,25 @@
 import { Component, signal } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
 import { invoke } from "@tauri-apps/api/core";
 
 @Component({
   selector: "app-root",
-  imports: [RouterOutlet],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
 export class AppComponent {
-  greetingMessage = signal("");
+  protected readonly busy = signal(false);
+  protected readonly failed = signal(false);
 
-  greet(event: SubmitEvent, name: string): void {
-    event.preventDefault();
-
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    invoke<string>("greet", { name }).then((text) => {
-      this.greetingMessage.set(text);
-    });
+  /** Re-open the video. The app already did this once on launch. */
+  protected async again(): Promise<void> {
+    this.busy.set(true);
+    this.failed.set(false);
+    try {
+      await invoke("rickroll");
+    } catch {
+      this.failed.set(true);
+    } finally {
+      this.busy.set(false);
+    }
   }
 }

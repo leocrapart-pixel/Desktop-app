@@ -1,21 +1,16 @@
-<main class="container">
-  <h1>Welcome to Tauri + Angular!</h1>
+<main>
+  <p class="kicker">You have been</p>
+  <h1>Rickrolled</h1>
+  <p class="sub">Never Gonna Give You Up is playing in your browser.</p>
 
-  <div class="row">
-    <a href="https://tauri.app" target="_blank">
-      <img src="/assets/tauri.svg" class="logo tauri" alt="Tauri logo" />
-    </a>
-    <a href="https://angular.io" target="_blank">
-      <img src="/assets/angular.svg" class="logo angular" alt="Angular logo" />
-    </a>
-  </div>
-  <p>Click on the logos to learn more about the frameworks</p>
+  <button type="button" (click)="again()" [disabled]="busy()">
+    {{ busy() ? "Opening…" : "Play it again" }}
+  </button>
 
-  <form class="row" (submit)="greet($event, greetInput.value)">
-    <input #greetInput id="greet-input" placeholder="Enter a name..." />
-    <button type="submit">Greet</button>
-  </form>
-  <p>{{ greetingMessage() }}</p>
-
-  <router-outlet />
+  @if (failed()) {
+    <p class="error" role="alert">
+      Could not launch the browser. The video lives at
+      <code>youtube.com/watch?v=dQw4w9WgXcQ</code>
+    </p>
+  }
 </main>

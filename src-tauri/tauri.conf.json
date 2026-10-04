@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "deskapp",
+  "productName": "Rickroll",
   "version": "0.1.0",
   "identifier": "com.deskapp.app",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "deskapp",
+        "title": "Never Gonna Give You Up",
         "width": 800,
         "height": 600,
         "minWidth": 640,
